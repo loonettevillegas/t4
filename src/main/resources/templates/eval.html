@@ -1,0 +1,81 @@
+
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" >
+    <title> Evaluaciones</title>
+
+    <!-- CSS -->
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+  </head>
+
+  <body>
+    <!-- la tabla -->
+<table id="first_table" class="default">
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th> Fecha inicio </th>
+            <th> Sector </th>
+            <th> Nombre </th>
+            <th> Tema </th>
+            <th> Nota Promedio </th>
+            <th> Evaluación </th>
+        </tr>
+    </thead>
+
+   <tbody>
+    <tr th:each="actividad : ${data}" th:data-actividad-id="${actividad.id}"> <td th:text="${actividad.id}"></td>
+        <td th:text="${actividad.dia_hora_inicio}"></td>
+        <td th:text="${actividad.sector}"></td>
+        <td th:text="${actividad.nombre}"></td>
+        <td th:text="${actividad.tema}"></td> 
+        <td class="promedio">-</td> 
+        <td> 
+          <form th:action="@{/api/post-eval}" method="post" class="eval-form">
+                <input type="hidden" name="actividadId" th:value="${actividad.id}"> 
+                
+                <input type="text" name="eval" placeholder="1-7" required pattern="[1-7]" title="La nota debe ser un número entre 1 y 7">
+                
+                <button type="submit" class="enviarboton">Enviar</button>
+            </form>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+
+      
+      
+
+    <!-- Scripts -->
+
+    <script th:src="@{/js/evaluaciones.js}"></script>
+   
+  </body>
+</html>
+ 
+
+
+
+
+
+
+  
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
